@@ -110,6 +110,14 @@
     @apply font-display tracking-tight;
   }
 
+    /* Cormorant uses old-style numbers by default ("ıoX") — keep digits on the baseline */
+  .font-display,
+  h1,
+  h2,
+  h3 {
+    font-variant-numeric: lining-nums;
+  }
+
   ::selection {
     background: color-mix(in oklab, var(--accent) 22%, transparent);
   }

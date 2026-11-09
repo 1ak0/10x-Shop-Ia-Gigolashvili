@@ -6,7 +6,7 @@ import { GiftIcon, SparkleIcon, TruckIcon } from "../ui/Icons";
 
 const BENEFITS = [
   { icon: TruckIcon, title: `Free delivery over ${formatPrice(Cart.FREE_SHIPPING_FROM)}`, text: "Calculated automatically in your bag" },
-  { icon: SparkleIcon, title: "A curated edit", text: "Signature scents and everyday essentials" },
+  { icon: SparkleIcon, title: "A curated edit", text: "Scents, beauty and accessories" },
   { icon: GiftIcon, title: `${Cart.PROMO_RATE * 100}% off with ${Cart.PROMO_CODE}`, text: "Apply the code in your cart" },
 ];
 
@@ -44,7 +44,7 @@ export function Hero() {
               Fragrance &amp; beauty, thoughtfully curated.
             </h1>
             <p className="mt-5 max-w-md text-base text-ink-soft sm:text-lg">
-              Signature scents, polished make-up and gentle skin care from the houses you love.
+                            Signature scents, polished make-up and gentle skin care — finished with jewellery, bags and sunglasses.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/?category=fragrances" className={buttonClasses("primary", "lg")}>
@@ -52,6 +52,9 @@ export function Hero() {
               </Link>
               <Link to="/?category=beauty" className={buttonClasses("secondary", "lg")}>
                 Explore make-up
+              </Link>
+                            <Link to="/?category=womens-jewellery" className={buttonClasses("secondary", "lg")}>
+                Accessories
               </Link>
             </div>
           </div>
