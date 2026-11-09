@@ -35,6 +35,11 @@ export function Footer() {
                 Skin care
               </Link>
             </li>
+                        <li>
+              <Link to="/?category=womens-jewellery" className={footerLink}>
+                Jewellery &amp; accessories
+              </Link>
+            </li>
           </ul>
         </div>
 

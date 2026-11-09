@@ -2,10 +2,10 @@ import type { CatalogParams, SortOption } from "../types/catalog";
 import type { Product } from "../types/product";
 import { discountedPrice } from "./format";
 
-export const PAGE_SIZE = 8;
+export const PAGE_SIZE = 12;
 
 /** The shop sells perfume and cosmetics only — these DummyJSON categories. */
-export const SHOP_CATEGORIES = ["fragrances", "beauty", "skin-care"] as const;
+export const SHOP_CATEGORIES = ["fragrances", "beauty", "skin-care", "womens-bags", "womens-jewellery", "womens-watches", "sunglasses"] as const;
 export type ShopCategory = (typeof SHOP_CATEGORIES)[number];
 
 export function isShopCategory(value: string): value is ShopCategory {
