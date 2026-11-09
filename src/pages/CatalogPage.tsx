@@ -27,6 +27,10 @@ const TITLES: Record<string, string> = {
   fragrances: "Fragrances",
   beauty: "Make-up & beauty",
   "skin-care": "Skin care",
+  "womens-bags": "Bags",
+  "womens-jewellery": "Jewellery",
+  "womens-watches": "Watches",
+  sunglasses: "Sunglasses",
 };
 
 export default function CatalogPage() {
