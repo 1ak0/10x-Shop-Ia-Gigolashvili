@@ -14,7 +14,7 @@ const BENEFITS = [
 function HeroArt() {
   return (
     <div
-      className="relative hidden aspect-[4/5] overflow-hidden rounded-[1.75rem] md:block"
+      className="relative hidden aspect-4/5 overflow-hidden rounded-[1.75rem] md:block"
       style={{
         background:
           "radial-gradient(120% 80% at 25% 15%, rgb(201 168 118 / 0.55), transparent 60%), linear-gradient(155deg, #6a3245 10%, #3a1824 90%)",
@@ -36,7 +36,7 @@ function HeroArt() {
 export function Hero() {
   return (
     <section className="container-page pt-6 sm:pt-10">
-      <div className="overflow-hidden rounded-[2rem] border border-line bg-surface">
+      <div className="overflow-hidden rounded-4xl border border-line bg-surface">
         <div className="grid items-center gap-10 p-6 sm:p-10 md:grid-cols-[1.25fr_1fr] lg:p-14">
           <div>
             <p className="eyebrow text-accent">The 10X edit</p>
