@@ -28,7 +28,7 @@ Measured on the live site (https://10x-shop-ia-gigolashvili.vercel.app/), Lighth
 
 Screenshot: `docs/lighthouse/lighthouse-mobile.png`.
 
-Commits: 53
+Commits: 56 (as of 12 Nov 2026)
 
 ## Three hardest problems
 
