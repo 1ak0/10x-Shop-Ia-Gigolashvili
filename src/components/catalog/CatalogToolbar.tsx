@@ -33,9 +33,11 @@ export function CatalogToolbar({ q, category, sort, categories, onSearch, onCate
   const debouncedSearch = useDebounce(searchInput, 400);
 
   // If the URL changes from outside (Back button, "Clear filters"), mirror it in the input.
-  // Comparing with the *debounced* value avoids resetting what the user is still typing.
-  if (q !== debouncedSearch.trim() && q !== searchInput.trim()) {
-    setSearchInput(q);
+  // Only react when `q` itself changed — and not when the change is our own debounced push.
+  const [prevQ, setPrevQ] = useState(q);
+  if (q !== prevQ) {
+    setPrevQ(q);
+    if (q !== searchInput.trim() && q !== debouncedSearch.trim()) setSearchInput(q);
   }
 
   // Refs keep the effect below dependent on the debounced text only.
