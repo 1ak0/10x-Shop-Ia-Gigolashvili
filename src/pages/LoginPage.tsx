@@ -43,7 +43,7 @@ export default function LoginPage() {
 
   return (
     <div className="container-page py-10 sm:py-16">
-      <div className="mx-auto grid max-w-4xl overflow-hidden rounded-[2rem] border border-line bg-surface md:grid-cols-2">
+      <div className="mx-auto grid max-w-4xl overflow-hidden rounded-4xl border border-line bg-surface md:grid-cols-2">
         <aside
           className="relative hidden flex-col justify-end p-10 text-white md:flex"
           style={{
