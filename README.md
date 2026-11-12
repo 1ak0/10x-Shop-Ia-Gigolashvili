@@ -1,6 +1,6 @@
 # 10X Shop — Perfume & Beauty
 
-**Live demo:** _add your Vercel / Netlify link here_
+**Live demo:** https://10x-shop-ia-gigolashvili.vercel.app/
 
 ## About
 
