@@ -17,17 +17,18 @@
 
 ## Metrics
 
-> Fill these in from real measurements — do not estimate.
+Measured on the live site (https://10x-shop-ia-gigolashvili.vercel.app/), Lighthouse, Mobile preset, incognito window, 12 Nov 2026.
 
-| Metric | Before | After | What changed |
-| --- | --- | --- | --- |
-| Lighthouse Performance (mobile) | | | |
-| Lighthouse Accessibility | | | |
-| Lighthouse Best Practices | | | |
-| CLS | | | |
-| Main JS chunk (gzip, from `npm run build`) | | | |
+| Metric | Result |
+| --- | --- |
+| Performance | 86 (scores vary between runs: 73–95) |
+| Accessibility | 96 |
+| Best Practices | 100 |
+| SEO | 92 |
 
-Commits: _run `git rev-list --count HEAD`_
+Screenshot: `docs/lighthouse/lighthouse-mobile.png`.
+
+Commits: 53
 
 ## Three hardest problems
 
