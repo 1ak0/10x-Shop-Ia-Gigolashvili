@@ -4,7 +4,7 @@ import type { AuthUser, ProfileFormValues } from "../types/user";
 
 /*
  * Educational login: no server, no real credentials.
- * Any non-empty username + a 6+ character password "logs in" — we only keep the username
+ * A valid username, email and password "log in" — we only keep the username and email
  * (and later the profile fields) in React state. The password is never stored or sent.
  */
 
@@ -12,15 +12,15 @@ interface AuthContextValue {
   user: AuthUser | null;
   isLoggedIn: boolean;
   displayName: string;
-  login: (username: string) => void;
+  login: (username: string, email: string) => void;
   logout: () => void;
   updateProfile: (values: ProfileFormValues) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-function createUser(username: string): AuthUser {
-  return { username, firstName: "", lastName: "", email: "", phone: "" };
+function createUser(username: string, email: string): AuthUser {
+  return { username, firstName: "", lastName: "", email, phone: "" };
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -32,9 +32,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     else userStorage.remove();
   }, [user]);
 
-  const login = useCallback((username: string) => {
+  const login = useCallback((username: string, email: string) => {
     const name = username.trim();
-    setUser((current) => (current?.username === name ? current : createUser(name)));
+    const mail = email.trim();
+    // Same username again → keep the saved profile, just update the email.
+    setUser((current) => (current?.username === name ? { ...current, email: mail } : createUser(name, mail)));
   }, []);
 
   const logout = useCallback(() => setUser(null), []);

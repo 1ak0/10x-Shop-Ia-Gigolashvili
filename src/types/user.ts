@@ -8,6 +8,7 @@ export interface AuthUser {
 
 export interface LoginFormValues {
   username: string;
+  email: string;
   password: string;
 }
 

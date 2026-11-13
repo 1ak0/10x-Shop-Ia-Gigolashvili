@@ -9,13 +9,23 @@ import { useToast } from "../context/ToastContext";
 import type { LoginFormValues } from "../types/user";
 import { getRedirectPath } from "../utils/guards";
 
-/** Yup schema — the exact error texts come from the PRD (P1.2). */
+/** Yup schema — PRD messages plus stricter rules for username, email and password. */
 const loginSchema = Yup.object({
-  username: Yup.string().email().required("Username is required"), 
-  password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
+  username: Yup.string()
+    .trim()
+    .required("Username is required")
+    .matches(/^[A-Za-z]+$/, "Username can contain Latin letters only")
+    .min(3, "Username must be at least 3 characters"),
+  email: Yup.string().trim().required("Email is required").email("Please enter a valid email address"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(6, "Password must be at least 6 characters")
+    .matches(/[a-z]/, "Password must contain a lowercase letter")
+    .matches(/[A-Z]/, "Password must contain an uppercase letter")
+    .matches(/\d/, "Password must contain a number"),
 });
 
-const INITIAL_VALUES: LoginFormValues = { username: "", password: "" };
+const INITIAL_VALUES: LoginFormValues = { username: "", email: "", password: "" };
 
 export default function LoginPage() {
   const { login, logout, isLoggedIn, displayName } = useAuth();
@@ -32,7 +42,7 @@ export default function LoginPage() {
     initialValues: INITIAL_VALUES,
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      login(values.username);
+      login(values.username, values.email);
       showToast(`Welcome, ${values.username.trim()} ✓`);
       navigate(redirectTo, { replace: true });
     },
@@ -88,6 +98,18 @@ export default function LoginPage() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   error={fieldError("username")}
+                  hint="Latin letters only, at least 3 (e.g. emilys)."
+                />
+                <TextField
+                  id="email"
+                  name="email"
+                  type="email"
+                  label="Email"
+                  autoComplete="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={fieldError("email")}
                 />
                 <TextField
                   id="password"
@@ -99,7 +121,7 @@ export default function LoginPage() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   error={fieldError("password")}
-                  hint="Demo login — any username and a password of 6+ characters (e.g. emilys / emilyspass)."
+                  hint="At least 6 characters, with an uppercase letter, a lowercase letter and a number (e.g. Emily123)."
                 />
                 <Button type="submit" size="lg" fullWidth disabled={formik.isSubmitting}>
                   Log In
