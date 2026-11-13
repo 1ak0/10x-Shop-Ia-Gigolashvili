@@ -9,6 +9,13 @@ interface ErrorBoundaryState {
   hasError: boolean;
 }
 
+const RELOAD_FLAG = "reloaded-after-deploy";
+
+/** True when a lazy page file could not be loaded — usually an old tab after a new deploy. */
+function isOldVersionError(error: Error): boolean {
+  return /dynamically imported module|Importing a module script failed/i.test(error.message);
+}
+
 /**
  * Catches render errors in its children and shows a fallback instead of a blank page.
  * Must be a class: there is no hook equivalent of getDerivedStateFromError / componentDidCatch.
@@ -22,6 +29,18 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   }
 
   componentDidCatch(error: Error, info: ErrorInfo): void {
+    // After a new deploy, an old tab may ask for page files that no longer exist.
+    // Reload once to get the new version instead of showing the error screen.
+    try {
+      if (isOldVersionError(error) && !sessionStorage.getItem(RELOAD_FLAG)) {
+        sessionStorage.setItem(RELOAD_FLAG, "1");
+        window.location.reload();
+        return;
+      }
+    } catch {
+      /* storage blocked — show the fallback below */
+    }
+
     if (import.meta.env.DEV) {
       console.error("[ErrorBoundary]", error, info.componentStack);
     }

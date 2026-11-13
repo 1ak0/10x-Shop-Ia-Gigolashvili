@@ -11,7 +11,7 @@ import { getRedirectPath } from "../utils/guards";
 
 /** Yup schema — the exact error texts come from the PRD (P1.2). */
 const loginSchema = Yup.object({
-  username: Yup.string().trim().required("Username is required"),
+  username: Yup.string().email().required("Username is required"), 
   password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
 });
 
